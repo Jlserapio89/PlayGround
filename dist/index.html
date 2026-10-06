@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Hola (App)</title>
+<style>
+  :root { color-scheme: light dark; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; min-height: 100vh; display: grid; place-items: center;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    background: linear-gradient(135deg, #0f172a, #1e3a8a);
+    color: #f8fafc; padding: 24px;
+  }
+  .card {
+    max-width: 560px; width: 100%; text-align: center;
+    background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.18);
+    border-radius: 20px; padding: 40px 32px; backdrop-filter: blur(8px);
+  }
+  h1 { font-size: clamp(2.5rem, 6vw, 4rem); margin: 0 0 12px; }
+  p { margin: 0 0 20px; opacity: .85; font-size: 1.1rem; }
+  button {
+    font-size: 1rem; padding: 12px 20px; border-radius: 999px; border: 0;
+    background: #facc15; color: #111827; font-weight: 700; cursor: pointer;
+  }
+  button:hover { filter: brightness(1.05); }
+  #count { margin-top: 16px; font-variant-numeric: tabular-nums; opacity: .9; }
+  footer { margin-top: 24px; font-size: .85rem; opacity: .6; }
+</style>
+</head>
+<body>
+<main class="card">
+<h1>Hola 👋</h1>
+<p>Bienvenido a Hola (App) — una app estática mínima lista para OMGithub.</p>
+<button id="btn" type="button">Saludar</button>
+<div id="count" aria-live="polite">Saludos: 0</div>
+<footer>PlayGround · sirve desde /dist · puerto 3000</footer>
+</main>
+<script>
+(function () {
+  var n = 0, btn = document.getElementById('btn'), out = document.getElementById('count');
+  btn.addEventListener('click', function () {
+    n += 1;
+    out.textContent = 'Saludos: ' + n + (n === 1 ? ' — ¡Hola!' : ' — ¡Hola de nuevo!');
+  });
+})();
+</script>
+</body>
+</html>
