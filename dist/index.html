@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NexusAI — Asistente Autónomo Open Source para Android</title>
+<style>
+:root{--bg:#0b0b14;--card:#16162a;--accent:#6c4dff;--teal:#00d1b2;--txt:#f2f1ff;--mut:#a9a7c7}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,Segoe UI,Roboto,Arial;background:radial-gradient(1200px 600px at 20% -10%,#2a1e6e,transparent),radial-gradient(900px 500px at 90% 0%,#003b35,transparent),var(--bg);color:var(--txt)}
+.wrap{max-width:1080px;margin:0 auto;padding:24px}
+header{display:flex;align-items:center;gap:12px;padding:12px 0}.logo{width:44px;height:44px;border-radius:14px;background:linear-gradient(135deg,var(--accent),var(--teal));display:grid;place-items:center;font-size:24px;font-weight:800}
+nav{margin-left:auto;display:flex;gap:8px}.pill{border:1px solid #ffffff22;padding:8px 14px;border-radius:999px;color:var(--txt);text-decoration:none;font-size:14px}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:center;margin-top:16px}
+@media(max-width:860px){.hero{grid-template-columns:1fr}}
+h1{font-size:clamp(32px,5vw,56px);margin:.2em 0;line-height:1.02}.sub{color:var(--mut);font-size:17px}
+.btns{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}.btn{background:var(--accent);color:#fff;border:0;padding:13px 20px;border-radius:12px;font-weight:700;cursor:pointer;text-decoration:none}.btn.ghost{background:#ffffff14}
+.phone{background:var(--card);border:1px solid #ffffff1c;border-radius:24px;overflow:hidden;box-shadow:0 30px 80px #00000066}
+.chat-head{padding:14px 16px;border-bottom:1px solid #ffffff14;font-weight:700;display:flex;gap:8px;align-items:center}.dot{width:10px;height:10px;border-radius:50%;background:#37e08b;box-shadow:0 0 12px #37e08b}
+.msgs{padding:14px;display:flex;flex-direction:column;gap:10px;min-height:300px}.m{padding:11px 13px;border-radius:14px;max-width:88%;font-size:14.5px;line-height:1.45}.m.ai{background:#ffffff10;align-self:flex-start}.m.me{background:#6c4dff33;border:1px solid #6c4dff55;align-self:flex-end}.row{display:flex;gap:8px;padding:12px;border-top:1px solid #ffffff14}.row input{flex:1;background:#00000055;border:1px solid #ffffff1e;color:#fff;border-radius:10px;padding:11px}.row button{background:var(--teal);border:0;border-radius:10px;padding:0 16px;font-weight:800;cursor:pointer}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:26px 0}@media(max-width:860px){.grid{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid #ffffff16;border-radius:18px;padding:18px}.card h3{margin:.2em 0}.card p{color:var(--mut);font-size:14.5px}
+code{background:#00000066;padding:2px 7px;border-radius:7px;font-size:13px}pre{background:#000;color:#c8ffd9;padding:14px;border-radius:12px;overflow:auto;font-size:13px}
+footer{color:var(--mut);font-size:13px;padding:26px 0;text-align:center}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><div class="logo">N</div><div><b>NexusAI</b><div style="color:var(--mut);font-size:13px">Nexus entre tú, IA local, Termux y Shizuku</div></div>
+<nav><a class="pill" href="#features">Features</a><a class="pill" href="#termux">Termux</a><a class="pill" href="#shizuku">Shizuku</a></nav></header>
+<div class="hero">
+<div>
+<h1>Asistente autónomo.<br>Libre. Privado. Tuyo.</h1>
+<p class="sub">App Android nativa (Kotlin + Compose) con IA open source 100% offline vía Termux y control avanzado vía Shizuku. Esta es la preview web del proyecto <code>/NexusAI</code> en este repo.</p>
+<div class="btns"><a class="btn" href="#chat">⚡ Probar mock del chat</a><a class="btn ghost" href="#termux">⚙️ Guía Termux</a></div>
+<p class="sub" style="font-size:13px">✓ Markdown ✓ Historial + favoritos ✓ ES/EN ✓ Modo oscuro ✓ Widget ✓ Backup ✓ Sin tracking</p>
+</div>
+<div class="phone" id="chat">
+<div class="chat-head"><span class="dot"></span> NexusAI · local-llama · offline</div>
+<div class="msgs" id="msgs">
+<div class="m ai">👋 Hola, soy <b>Nexus</b>. Corro en tu dispositivo vía Termux. ¿Configuramos el backend o resolvemos algo?</div>
+<div class="m me">Configúrame Termux paso a paso</div>
+<div class="m ai">1️⃣ Instala <b>Termux</b> + <b>Termux:API</b>.<br>2️⃣ Activa <i>Allow external apps</i>.<br>3️⃣ En NexusAI → Ajustes → <b>Instalar backend</b> (<code>llama-server -m tinyllama.gguf --port 8080</code>).<br>4️⃣ Pulsa <i>Probar conexión</i> ✅</div>
+</div>
+<div class="row"><input id="in" placeholder="Pregunta a NexusAI…"><button onclick="send()">➤</button></div>
+</div>
+</div>
+<div class="grid" id="features">
+<div class="card"><h3>💬 Chat moderno</h3><p>Burbujas, Markdown, respuesta rápida, historial Room, favoritos y búsqueda.</p></div>
+<div class="card"><h3>⚙️ Termux integrado</h3><p>Intents <code>RUN_COMMAND</code> oficiales, bootstrap de <code>llama-server</code>, chequeo de <code>/health</code> y notificaciones.</p></div>
+<div class="card"><h3>🔑 Shizuku</h3><p>API v13 con estado en vivo, solicitud de permiso y alertas si necesita ADB Wi-Fi / root.</p></div>
+<div class="card"><h3>🎭 Personalizable</h3><p>Nombre, system prompt, tono (amable/pro/conciso/creativo) y temperatura.</p></div>
+<div class="card"><h3>🔐 Permisos claros</h3><p>Cada permiso explica su impacto. Red solo a <code>127.0.0.1</code>: nada sale del móvil.</p></div>
+<div class="card"><h3>🧩 Modular</h3><p>Cambia el <code>.gguf</code> en <code>~/.nexusai/</code> sin reinstalar. ES/EN, widget y backup incluidos.</p></div>
+</div>
+<div class="card" id="termux"><h3>⚙️ Backend libre en Termux (oficial)</h3><pre>pkg install -y llama-cpp curl termux-api
+mkdir -p ~/.nexusai && cd ~/.nexusai
+curl -L -o tinyllama.gguf https://huggingface.co/TinyLlama/TinyLlama-1.1B-Chat-v1.0-GGUF/resolve/main/tinyllama-1.1b-chat-v1.0.Q4_K_M.gguf
+llama-server -m ~/.nexusai/tinyllama.gguf -c 2048 --port 8080</pre>
+<p style="color:var(--mut)">NexusAI lo hace por ti con <code>RUN_COMMAND</code> desde Ajustes → Instalar backend.</p></div>
+<br>
+<div class="card" id="shizuku"><h3>🔑 Shizuku: control avanzado</h3><p style="color:var(--mut)">1. Instala Shizuku Manager. 2. Inicia el servicio (ADB Wi-Fi o root). 3. Autoriza a NexusAI cuando lo pida. Verás el estado en Ajustes con notificaciones ✓.</p><p>Código Android completo en <code>/NexusAI</code>: Compose + Room + DataStore + OkHttp + Shizuku API 13.1.5. Abre la carpeta en Android Studio (minSdk 26).</p></div>
+<footer>NexusAI · open source · preview estática servida desde <code>/dist</code> · hecha para validación</footer>
+</div>
+<script>
+function send(){var i=document.getElementById('in'),m=document.getElementById('msgs');if(!i.value.trim())return;var d=document.createElement('div');d.className='m me';d.textContent=i.value;msgs.appendChild(d);var v=i.value;i.value='';setTimeout(function(){var r=document.createElement('div');r.className='m ai';r.innerHTML='✅ (mock web) Procesé: <b>'+v.replace(/</g,'&lt;')+'</b><br>En Android respondo con el LLM local en Termux.';msgs.appendChild(r);r.scrollIntoView()},500)}
+document.getElementById('in').addEventListener('keydown',function(e){if(e.key==='Enter')send()});
+</script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">NexusAI</string>
+    <string name="widget_name">NexusAI Chat rápido</string>
+    <string name="notif_channel_status">Estado de integración</string>
+</resources>
